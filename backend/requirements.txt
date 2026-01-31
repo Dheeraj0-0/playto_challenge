@@ -1,0 +1,5 @@
+django
+djangorestframework
+django-cors-headers
+django-mptt       # Crucial for the N+1 fix
+psycopg2-binary   # If using Postgres, otherwise sqlite is fine
