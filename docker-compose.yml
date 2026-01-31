@@ -5,14 +5,16 @@ services:
     image: postgres:13
     environment:
       - POSTGRES_DB=playto
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=playtouser
+      - POSTGRES_PASSWORD=secretpassword
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   backend:
     build: ./backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
     ports:
@@ -20,7 +22,7 @@ services:
     depends_on:
       - db
     environment:
-      - DATABASE_URL=postgres://user:password@db:5432/playto
+      - DATABASE_URL=postgres://playtouser:secretpassword@db:5432/playto
 
 volumes:
   postgres_data:
