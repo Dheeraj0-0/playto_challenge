@@ -35,8 +35,26 @@ The leaderboard calculates the "Top 5 Users" based on activity in the **last 24 
 
 ## ⚡ How to Run Locally
 
-This project is fully containerized. You only need Docker.
+This project is fully containerized. You only need Docker installed on your machine.
 
 1.  **Clone the repository:**
     ```bash
-    git clone
+    git clone [https://github.com/Dheeraj0-0/playto_challenge.git](https://github.com/Dheeraj0-0/playto_challenge.git)
+    cd playto_challenge
+    ```
+
+2.  **Start the server:**
+    ```bash
+    docker-compose up --build
+    ```
+
+3.  **Run Migrations (Important for Database):**
+    Open a new terminal tab and run:
+    ```bash
+    docker-compose exec backend python manage.py migrate
+    ```
+
+4.  **Create Superuser (Optional - to access Admin Panel):**
+    ```bash
+    docker-compose exec backend python manage.py createsuperuser
+    ```
