@@ -35,7 +35,7 @@ class LeaderboardView(generics.ListAPIView):
             ) * 5,
             comment_points=Count(
                 'comment__likes', 
-                filter=Q(comments__likes__created_at__gte=last_24h) # Note: 'comment' is the related_name default for User
+                filter=Q(comment__likes__created_at__gte=last_24h) # Note: 'comment' is the related_name default for User
             ) * 1
         ).annotate(
             total_karma=F('post_points') + F('comment_points')
